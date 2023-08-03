@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,14 +40,15 @@ public class Cook {
 	@JoinColumn(name = "mealtype_id")
 	private MealType mealType;
 
+	@JsonIgnore
 	private LocalDateTime reqTime;
-	
+
 	@CreationTimestamp
 	private LocalDateTime createdAt;
-	
+
 	@Transient
-	private DurationValidation localDateTimeToYMDHMS;
-	
+	@JsonProperty("requieredTime")
+	private RequieredTime localDateTimeToYMDHMS;
 
 	// Getters and setters
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import info.ashutosh.entity.Cook;
 import info.ashutosh.entity.CookRequest;
-import info.ashutosh.entity.DurationValidation;
+import info.ashutosh.entity.RequieredTime;
 import info.ashutosh.entity.Ingredients;
 import info.ashutosh.entity.MealType;
 import info.ashutosh.enums.ResponseStatus;
@@ -38,7 +38,7 @@ public class CookService {
 		if (!findAll.isEmpty()) {
 			for (Cook cook : findAll) {
 				System.out.println(cook.getCreatedAt());
-				DurationValidation localDateTimeToYMDHMS = DateTimeToYMDHMS.LocalDateTimeToYMDHMS(cook.getCreatedAt(),
+				RequieredTime localDateTimeToYMDHMS = DateTimeToYMDHMS.LocalDateTimeToYMDHMS(cook.getCreatedAt(),
 						cook.getReqTime());
 				cook.setLocalDateTimeToYMDHMS(localDateTimeToYMDHMS);
 			}
@@ -85,10 +85,9 @@ public class CookService {
 		System.out.println(now);
 
 		LocalDateTime resultDateTime = DateTimeConverter.calculateDateTimeAfterDuration(
-				cookRequest.getDurationValidation().getYears(), cookRequest.getDurationValidation().getMonths(),
-				cookRequest.getDurationValidation().getDays(), cookRequest.getDurationValidation().getHours(),
-				cookRequest.getDurationValidation().getMinutes(), cookRequest.getDurationValidation().getSeconds(),
-				LocalDateTime.now());
+				cookRequest.getRequieredTime().getYears(), cookRequest.getRequieredTime().getMonths(),
+				cookRequest.getRequieredTime().getDays(), cookRequest.getRequieredTime().getHours(),
+				cookRequest.getRequieredTime().getMinutes(), cookRequest.getRequieredTime().getSeconds(), now);
 
 		cook.setReqTime(resultDateTime);
 
@@ -97,7 +96,7 @@ public class CookService {
 			cook = cookRepository.save(cook);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return ResponseUtil.prepareResponse(ResponseStatus.BAD_CREDENTIAL, null, null);
+			return ResponseUtil.prepareResponse(ResponseStatus.ERROR, null, null);
 		}
 
 		if (cook == null) {

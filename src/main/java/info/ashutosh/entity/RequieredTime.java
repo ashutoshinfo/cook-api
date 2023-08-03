@@ -3,7 +3,7 @@ package info.ashutosh.entity;
 import java.time.Duration;
 import java.time.Period;
 
-public class DurationValidation {
+public class RequieredTime {
 	private int years;
 	private int months;
 	private int days;
@@ -11,11 +11,11 @@ public class DurationValidation {
 	private int minutes;
 	private int seconds;
 	
-	public DurationValidation() {
+	public RequieredTime() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DurationValidation(Duration duration, Period period) {
+	public RequieredTime(Duration duration, Period period) {
 		this.years = period.getYears();
 		this.months = period.getMonths();
 		this.days = period.getDays();

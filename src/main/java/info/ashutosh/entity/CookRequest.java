@@ -25,6 +25,6 @@ public class CookRequest {
 	private List<String> ingredients;
 
 	@NotNull(message = "DurationValidation is required")
-	private DurationValidation durationValidation;
+	private RequieredTime requieredTime;
 
 }
