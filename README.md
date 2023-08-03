@@ -19,4 +19,24 @@ This project aims to provide a solution for storing and managing food items, lik
 - Duration
 - Period
 
-## Getting Started
+## API Payload to save Recipe
+
+```
+{
+    "name": "Recipe Name",
+    "description": "Recipe Description",
+    "mealType": "Meal Type",
+    "ingredients": [
+        "Ingredient 1",
+        "Ingredient 2",
+        "Ingredient 3"
+    ],
+    "requieredTime": {
+        "years": 23,
+        "months": 340,
+        "days": 153,
+        "hours": 50, 
+        "minutes": 320,
+        "seconds": 45
+    }
+}
